@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Alert } from "react-native";
+import { View, StyleSheet, Alert, ActivityIndicator } from "react-native";
 import MapboxGL from "@rnmapbox/maps";
-import { MAPBOX_PUBLIC_KEY } from "react-native-dotenv";
+import Constants from 'expo-constants';
 import * as Location from "expo-location";
 import { useObservations } from "../hooks/useObservations";
 import { Observation } from "../types/observation";
 import ObservationModal from "../components/ObservationModal";
 import AnimatedMarker from "../components/AnimatedMarker";
 
-MapboxGL.setAccessToken(MAPBOX_PUBLIC_KEY);
+MapboxGL.setAccessToken(Constants.expoConfig?.extra?.mapboxAccessToken as string);
 
 type Props = {
   coords: Location.LocationObjectCoords;
@@ -18,7 +18,7 @@ export default function MapScreen({ coords }: Props) {
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedObservation, setSelectedObservation] = useState<Observation | undefined>();
   const [clickedCoords, setClickedCoords] = useState<{ latitude: number; longitude: number } | null>(null);
-  const { observations, createObservation, updateObservation, deleteObservation } = useObservations();
+  const { observations, isLoading, createObservation, updateObservation, deleteObservation } = useObservations();
 
   const handleMapPress = (feature: any) => {
     const coordinates = feature.geometry.coordinates;
@@ -61,9 +61,17 @@ export default function MapScreen({ coords }: Props) {
     }
   };
 
+  if (isLoading) {
+    return (
+      <View style={[styles.container, styles.loading]}>
+        <ActivityIndicator size="large" color="#007AFF" />
+      </View>
+    );
+  }
+
   return (
     <View style={styles.container}>
-      <MapboxGL.MapView 
+      <MapboxGL.MapView
         style={styles.map}
         onPress={handleMapPress}
       >
@@ -105,6 +113,10 @@ export default function MapScreen({ coords }: Props) {
 
 const styles = StyleSheet.create({
   container: { flex: 1 },
+  loading: {
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
   map: { flex: 1 },
   userMarker: {
     width: 20,
