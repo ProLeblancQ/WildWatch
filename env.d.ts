@@ -1,4 +1,4 @@
 declare module "react-native-dotenv" {
-  export const MAPBOX_PUBLIC_KEY: string;
-  export const MAPBOX_PRIVATE_KEY: string;
+  export const EXPO_PUBLIC_MAPBOX_ACCESS_TOKEN: string;
+  export const MAPBOX_SECRET_TOKEN: string;
 }
