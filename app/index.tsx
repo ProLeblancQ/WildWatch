@@ -1,8 +1,8 @@
 import React from "react";
 
-import CurrentPositionResponse from "./src/components/CurrentPositionResponse";
-import { useCurrentPosition } from "./src/hooks/userCurrentLocation";
-import MapScreen from "./src/views/MapScreen";
+import CurrentPositionResponse from "../src/components/CurrentPositionResponse";
+import { useCurrentPosition } from "../src/hooks/userCurrentLocation";
+import MapScreen from "../src/views/MapScreen";
 
 export default function Index() {
   const { coords, status } = useCurrentPosition();

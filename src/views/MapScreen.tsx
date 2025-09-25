@@ -8,7 +8,8 @@ import { Observation } from "../types/observation";
 import ObservationModal from "../components/ObservationModal";
 import AnimatedMarker from "../components/AnimatedMarker";
 
-MapboxGL.setAccessToken(Constants.expoConfig?.extra?.mapboxAccessToken as string);
+
+MapboxGL.setAccessToken("pk.eyJ1Ijoic3JheW5hdWQtbGFtb2JpbGVyeSIsImEiOiJjbWZmdTRienQwb2F4MmtzYmprNWxieWZwIn0.mgySs3rW_6jA7hEKCF7ycw");
 
 type Props = {
   coords: Location.LocationObjectCoords;

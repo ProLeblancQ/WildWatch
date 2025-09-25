@@ -100,7 +100,7 @@ export default function ObservationModal({
 
         <View style={styles.form}>
           <View style={styles.field}>
-            <Text style={styles.label}>Nom de l'observation *</Text>
+            <Text style={styles.label}>Nom de l observation *</Text>
             <TextInput
               style={styles.input}
               value={name}
@@ -130,7 +130,7 @@ export default function ObservationModal({
 
           {observation && onDelete && (
             <TouchableOpacity style={styles.deleteButton} onPress={handleDelete}>
-              <Text style={styles.deleteText}>Supprimer l'observation</Text>
+              <Text style={styles.deleteText}>Supprimer l observation</Text>
             </TouchableOpacity>
           )}
         </View>
